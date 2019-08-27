@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="js/proj4.js"></script>
+        <script src="js/proj4leaflet.js"></script>
+        <script src="data/CEDAW_0.js"></script>
+        <script src="data/CRC_1.js"></script>
+        <script src="data/protocol_geneve_1967_2.js"></script>
+        <script src="data/ConventiondeGenve_3.js"></script>
+        <script src="data/2013_ATT_4.js"></script>
+        <script src="data/2008_CCM_5.js"></script>
+        <script src="data/2006_CRPD_6.js"></script>
+        <script src="data/2003_CCW_protocol_V_7.js"></script>
+        <script src="data/1997_ottawa_8.js"></script>
+        <script src="data/1980_CCW_9.js"></script>
+        <script src="data/Policy_base_10.js"></script>
+        <script>
+        var crs = new L.Proj.CRS('EPSG:54016', '+proj=gall +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs', {
+            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
+        });
+        var map = L.map('map', {
+            crs: crs,
+            continuousWorld: false,
+            worldCopyJump: false, 
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-66.12125808244461,-175.2595753810643],[78.86006340261731,176.18783636958798]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_CEDAW_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CEDAW'] !== null ? Autolinker.link(String(feature.properties['CEDAW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CRC'] !== null ? Autolinker.link(String(feature.properties['CRC'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F27'] !== null ? Autolinker.link(String(feature.properties['Policy_F27'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CEDAW_0_0(feature) {
+            switch(String(feature.properties['CEDAW'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_CEDAW_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_CEDAW_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_CEDAW_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_CEDAW_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CEDAW_0');
+        map.getPane('pane_CEDAW_0').style.zIndex = 400;
+        map.getPane('pane_CEDAW_0').style['mix-blend-mode'] = 'normal';
+        var layer_CEDAW_0 = new L.geoJson(json_CEDAW_0, {
+            attribution: '',
+            pane: 'pane_CEDAW_0',
+            onEachFeature: pop_CEDAW_0,
+            style: style_CEDAW_0_0,
+        });
+        bounds_group.addLayer(layer_CEDAW_0);
+        map.addLayer(layer_CEDAW_0);
+        function pop_CRC_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CEDAW'] !== null ? Autolinker.link(String(feature.properties['CEDAW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CRC'] !== null ? Autolinker.link(String(feature.properties['CRC'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CRC_1_0(feature) {
+            switch(String(feature.properties['CRC'])) {
+                default:
+                    return {
+                pane: 'pane_CRC_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_CRC_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_CRC_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_CRC_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_CRC_1');
+        map.getPane('pane_CRC_1').style.zIndex = 401;
+        map.getPane('pane_CRC_1').style['mix-blend-mode'] = 'normal';
+        var layer_CRC_1 = new L.geoJson(json_CRC_1, {
+            attribution: '',
+            pane: 'pane_CRC_1',
+            onEachFeature: pop_CRC_1,
+            style: style_CRC_1_0,
+        });
+        bounds_group.addLayer(layer_CRC_1);
+        map.addLayer(layer_CRC_1);
+        function pop_protocol_geneve_1967_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_protocol_geneve_1967_2_0(feature) {
+            switch(String(feature.properties['p geneve'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_protocol_geneve_1967_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_protocol_geneve_1967_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_protocol_geneve_1967_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_protocol_geneve_1967_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_protocol_geneve_1967_2');
+        map.getPane('pane_protocol_geneve_1967_2').style.zIndex = 402;
+        map.getPane('pane_protocol_geneve_1967_2').style['mix-blend-mode'] = 'normal';
+        var layer_protocol_geneve_1967_2 = new L.geoJson(json_protocol_geneve_1967_2, {
+            attribution: '',
+            pane: 'pane_protocol_geneve_1967_2',
+            onEachFeature: pop_protocol_geneve_1967_2,
+            style: style_protocol_geneve_1967_2_0,
+        });
+        bounds_group.addLayer(layer_protocol_geneve_1967_2);
+        map.addLayer(layer_protocol_geneve_1967_2);
+        function pop_ConventiondeGenve_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ConventiondeGenve_3_0(feature) {
+            switch(String(feature.properties['c geneve'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_ConventiondeGenve_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_ConventiondeGenve_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_ConventiondeGenve_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_ConventiondeGenve_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ConventiondeGenve_3');
+        map.getPane('pane_ConventiondeGenve_3').style.zIndex = 403;
+        map.getPane('pane_ConventiondeGenve_3').style['mix-blend-mode'] = 'normal';
+        var layer_ConventiondeGenve_3 = new L.geoJson(json_ConventiondeGenve_3, {
+            attribution: '',
+            pane: 'pane_ConventiondeGenve_3',
+            onEachFeature: pop_ConventiondeGenve_3,
+            style: style_ConventiondeGenve_3_0,
+        });
+        bounds_group.addLayer(layer_ConventiondeGenve_3);
+        map.addLayer(layer_ConventiondeGenve_3);
+        function pop_2013_ATT_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2013_ATT_4_0(feature) {
+            switch(String(feature.properties['2013 ATT'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_2013_ATT_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_2013_ATT_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_2013_ATT_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_2013_ATT_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_2013_ATT_4');
+        map.getPane('pane_2013_ATT_4').style.zIndex = 404;
+        map.getPane('pane_2013_ATT_4').style['mix-blend-mode'] = 'normal';
+        var layer_2013_ATT_4 = new L.geoJson(json_2013_ATT_4, {
+            attribution: '',
+            pane: 'pane_2013_ATT_4',
+            onEachFeature: pop_2013_ATT_4,
+            style: style_2013_ATT_4_0,
+        });
+        bounds_group.addLayer(layer_2013_ATT_4);
+        map.addLayer(layer_2013_ATT_4);
+        function pop_2008_CCM_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2008_CCM_5_0(feature) {
+            switch(String(feature.properties['2008 CCM'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_2008_CCM_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_2008_CCM_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_2008_CCM_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_2008_CCM_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_2008_CCM_5');
+        map.getPane('pane_2008_CCM_5').style.zIndex = 405;
+        map.getPane('pane_2008_CCM_5').style['mix-blend-mode'] = 'normal';
+        var layer_2008_CCM_5 = new L.geoJson(json_2008_CCM_5, {
+            attribution: '',
+            pane: 'pane_2008_CCM_5',
+            onEachFeature: pop_2008_CCM_5,
+            style: style_2008_CCM_5_0,
+        });
+        bounds_group.addLayer(layer_2008_CCM_5);
+        map.addLayer(layer_2008_CCM_5);
+        function pop_2006_CRPD_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2006_CRPD_6_0(feature) {
+            switch(String(feature.properties['2006 CRPD'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_2006_CRPD_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_2006_CRPD_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_2006_CRPD_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_2006_CRPD_6',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_2006_CRPD_6');
+        map.getPane('pane_2006_CRPD_6').style.zIndex = 406;
+        map.getPane('pane_2006_CRPD_6').style['mix-blend-mode'] = 'normal';
+        var layer_2006_CRPD_6 = new L.geoJson(json_2006_CRPD_6, {
+            attribution: '',
+            pane: 'pane_2006_CRPD_6',
+            onEachFeature: pop_2006_CRPD_6,
+            style: style_2006_CRPD_6_0,
+        });
+        bounds_group.addLayer(layer_2006_CRPD_6);
+        map.addLayer(layer_2006_CRPD_6);
+        function pop_2003_CCW_protocol_V_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_2003_CCW_protocol_V_7_0(feature) {
+            switch(String(feature.properties['2003 CCW'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_2003_CCW_protocol_V_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_2003_CCW_protocol_V_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_2003_CCW_protocol_V_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_2003_CCW_protocol_V_7',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_2003_CCW_protocol_V_7');
+        map.getPane('pane_2003_CCW_protocol_V_7').style.zIndex = 407;
+        map.getPane('pane_2003_CCW_protocol_V_7').style['mix-blend-mode'] = 'normal';
+        var layer_2003_CCW_protocol_V_7 = new L.geoJson(json_2003_CCW_protocol_V_7, {
+            attribution: '',
+            pane: 'pane_2003_CCW_protocol_V_7',
+            onEachFeature: pop_2003_CCW_protocol_V_7,
+            style: style_2003_CCW_protocol_V_7_0,
+        });
+        bounds_group.addLayer(layer_2003_CCW_protocol_V_7);
+        map.addLayer(layer_2003_CCW_protocol_V_7);
+        function pop_1997_ottawa_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_1997_ottawa_8_0(feature) {
+            switch(String(feature.properties['1997 ottaw'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_1997_ottawa_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_1997_ottawa_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_1997_ottawa_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_1997_ottawa_8',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_1997_ottawa_8');
+        map.getPane('pane_1997_ottawa_8').style.zIndex = 408;
+        map.getPane('pane_1997_ottawa_8').style['mix-blend-mode'] = 'normal';
+        var layer_1997_ottawa_8 = new L.geoJson(json_1997_ottawa_8, {
+            attribution: '',
+            pane: 'pane_1997_ottawa_8',
+            onEachFeature: pop_1997_ottawa_8,
+            style: style_1997_ottawa_8_0,
+        });
+        bounds_group.addLayer(layer_1997_ottawa_8);
+        map.addLayer(layer_1997_ottawa_8);
+        function pop_1980_CCW_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SOV_A3'] !== null ? Autolinker.link(String(feature.properties['SOV_A3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_Fie'] !== null ? Autolinker.link(String(feature.properties['Policy_Fie'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_1'] !== null ? Autolinker.link(String(feature.properties['Policy_F_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_2'] !== null ? Autolinker.link(String(feature.properties['Policy_F_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_3'] !== null ? Autolinker.link(String(feature.properties['Policy_F_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Policy_F_4'] !== null ? Autolinker.link(String(feature.properties['Policy_F_4'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1997 ottaw'] !== null ? Autolinker.link(String(feature.properties['1997 ottaw'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2008 CCM'] !== null ? Autolinker.link(String(feature.properties['2008 CCM'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['1980 CCW'] !== null ? Autolinker.link(String(feature.properties['1980 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2003 CCW'] !== null ? Autolinker.link(String(feature.properties['2003 CCW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2013 ATT'] !== null ? Autolinker.link(String(feature.properties['2013 ATT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['2006 CRPD'] !== null ? Autolinker.link(String(feature.properties['2006 CRPD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['c geneve'] !== null ? Autolinker.link(String(feature.properties['c geneve'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['p geneve'] !== null ? Autolinker.link(String(feature.properties['p geneve'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_1980_CCW_9_0(feature) {
+            switch(String(feature.properties['1980 CCW'])) {
+                case 'NS':
+                    return {
+                pane: 'pane_1980_CCW_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,91,194,1.0)',
+            }
+                    break;
+                case 'S':
+                    return {
+                pane: 'pane_1980_CCW_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,207,40,1.0)',
+            }
+                    break;
+                case 'SP':
+                    return {
+                pane: 'pane_1980_CCW_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,201,156,1.0)',
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_1980_CCW_9',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,76,80,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_1980_CCW_9');
+        map.getPane('pane_1980_CCW_9').style.zIndex = 409;
+        map.getPane('pane_1980_CCW_9').style['mix-blend-mode'] = 'normal';
+        var layer_1980_CCW_9 = new L.geoJson(json_1980_CCW_9, {
+            attribution: '',
+            pane: 'pane_1980_CCW_9',
+            onEachFeature: pop_1980_CCW_9,
+            style: style_1980_CCW_9_0,
+        });
+        bounds_group.addLayer(layer_1980_CCW_9);
+        map.addLayer(layer_1980_CCW_9);
+        function pop_Policy_base_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Country'] !== null ? Autolinker.link(String(feature.properties['Country'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Policy_base_10_0() {
+            return {
+                pane: 'pane_Policy_base_10',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,0.0)',
+            }
+        }
+        map.createPane('pane_Policy_base_10');
+        map.getPane('pane_Policy_base_10').style.zIndex = 410;
+        map.getPane('pane_Policy_base_10').style['mix-blend-mode'] = 'normal';
+        var layer_Policy_base_10 = new L.geoJson(json_Policy_base_10, {
+            attribution: '',
+            pane: 'pane_Policy_base_10',
+            onEachFeature: pop_Policy_base_10,
+            style: style_Policy_base_10_0,
+        });
+        bounds_group.addLayer(layer_Policy_base_10);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Policy_base_10.png" /> Policy_base': layer_Policy_base_10,'1980_CCW<br /><table><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_Nodata3.png" /></td><td>No data</td></tr></table>': layer_1980_CCW_9,'1997_ottawa<br /><table><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_3.png" /></td><td></td></tr></table>': layer_1997_ottawa_8,'2003_CCW_protocol_V<br /><table><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_3.png" /></td><td></td></tr></table>': layer_2003_CCW_protocol_V_7,'2006_CRPD<br /><table><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_3.png" /></td><td></td></tr></table>': layer_2006_CRPD_6,'2008_CCM<br /><table><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_3.png" /></td><td></td></tr></table>': layer_2008_CCM_5,'2013_ATT<br /><table><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_3.png" /></td><td></td></tr></table>': layer_2013_ATT_4,'Convention de Genève<br /><table><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_3.png" /></td><td></td></tr></table>': layer_ConventiondeGenve_3,'protocol_geneve_1967<br /><table><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_3.png" /></td><td></td></tr></table>': layer_protocol_geneve_1967_2,'CRC<br /><table><tr><td style="text-align: center;"><img src="legend/CRC_1_0.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_3.png" /></td><td></td></tr></table>': layer_CRC_1,'CEDAW<br /><table><tr><td style="text-align: center;"><img src="legend/CEDAW_0_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_3.png" /></td><td></td></tr></table>': layer_CEDAW_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
