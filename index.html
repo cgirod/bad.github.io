@@ -32,10 +32,12 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="js/leaflet-measure.js"></script>
+        <script src="js/proj4.js"></script>
+        <script src="js/proj4leaflet.js"></script>
         <script src="data/CEDAW_0.js"></script>
         <script src="data/CRC_1.js"></script>
         <script src="data/protocol_geneve_1967_2.js"></script>
-        <script src="data/convention_geneve_1951_3.js"></script>
+        <script src="data/ConventiondeGenve_3.js"></script>
         <script src="data/2013_ATT_4.js"></script>
         <script src="data/2008_CCM_5.js"></script>
         <script src="data/2006_CRPD_6.js"></script>
@@ -44,9 +46,15 @@
         <script src="data/1980_CCW_9.js"></script>
         <script src="data/Policy_base_10.js"></script>
         <script>
+        var crs = new L.Proj.CRS('EPSG:54016', '+proj=gall +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs', {
+            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
+        });
         var map = L.map('map', {
+            crs: crs,
+            continuousWorld: false,
+            worldCopyJump: false, 
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[-106.08294268317425,-152.1463698375334],[115.12096793135089,225.8536301624666]]);
+        }).fitBounds([[-66.12125808244461,-175.2595753810643],[78.86006340261731,176.18783636958798]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         var measureControl = new L.Control.Measure({
@@ -176,7 +184,7 @@
 
         function style_CRC_1_0(feature) {
             switch(String(feature.properties['CRC'])) {
-                case 'NULL':
+                default:
                     return {
                 pane: 'pane_CRC_1',
                 opacity: 1,
@@ -312,7 +320,7 @@
                 fillColor: 'rgba(0,91,194,1.0)',
             }
                     break;
-                case 'NULL':
+                default:
                     return {
                 pane: 'pane_protocol_geneve_1967_2',
                 opacity: 1,
@@ -367,7 +375,7 @@
         });
         bounds_group.addLayer(layer_protocol_geneve_1967_2);
         map.addLayer(layer_protocol_geneve_1967_2);
-        function pop_convention_geneve_1951_3(feature, layer) {
+        function pop_ConventiondeGenve_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['SOVEREIGNT'] !== null ? Autolinker.link(String(feature.properties['SOVEREIGNT'])) : '') + '</td>\
@@ -418,11 +426,11 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_convention_geneve_1951_3_0(feature) {
+        function style_ConventiondeGenve_3_0(feature) {
             switch(String(feature.properties['c geneve'])) {
                 case 'NS':
                     return {
-                pane: 'pane_convention_geneve_1951_3',
+                pane: 'pane_ConventiondeGenve_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -434,9 +442,9 @@
                 fillColor: 'rgba(0,91,194,1.0)',
             }
                     break;
-                case 'NULL':
+                default:
                     return {
-                pane: 'pane_convention_geneve_1951_3',
+                pane: 'pane_ConventiondeGenve_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -450,7 +458,7 @@
                     break;
                 case 'SP':
                     return {
-                pane: 'pane_convention_geneve_1951_3',
+                pane: 'pane_ConventiondeGenve_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -464,7 +472,7 @@
                     break;
                 default:
                     return {
-                pane: 'pane_convention_geneve_1951_3',
+                pane: 'pane_ConventiondeGenve_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,0.0)',
                 dashArray: '',
@@ -478,17 +486,17 @@
                     break;
             }
         }
-        map.createPane('pane_convention_geneve_1951_3');
-        map.getPane('pane_convention_geneve_1951_3').style.zIndex = 403;
-        map.getPane('pane_convention_geneve_1951_3').style['mix-blend-mode'] = 'normal';
-        var layer_convention_geneve_1951_3 = new L.geoJson(json_convention_geneve_1951_3, {
+        map.createPane('pane_ConventiondeGenve_3');
+        map.getPane('pane_ConventiondeGenve_3').style.zIndex = 403;
+        map.getPane('pane_ConventiondeGenve_3').style['mix-blend-mode'] = 'normal';
+        var layer_ConventiondeGenve_3 = new L.geoJson(json_ConventiondeGenve_3, {
             attribution: '',
-            pane: 'pane_convention_geneve_1951_3',
-            onEachFeature: pop_convention_geneve_1951_3,
-            style: style_convention_geneve_1951_3_0,
+            pane: 'pane_ConventiondeGenve_3',
+            onEachFeature: pop_ConventiondeGenve_3,
+            style: style_ConventiondeGenve_3_0,
         });
-        bounds_group.addLayer(layer_convention_geneve_1951_3);
-        map.addLayer(layer_convention_geneve_1951_3);
+        bounds_group.addLayer(layer_ConventiondeGenve_3);
+        map.addLayer(layer_ConventiondeGenve_3);
         function pop_2013_ATT_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -1254,9 +1262,8 @@
             style: style_Policy_base_10_0,
         });
         bounds_group.addLayer(layer_Policy_base_10);
-        map.addLayer(layer_Policy_base_10);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Policy_base_10.png" /> Policy_base': layer_Policy_base_10,'1980_CCW<br /><table><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_Nodata3.png" /></td><td>No data</td></tr></table>': layer_1980_CCW_9,'1997_ottawa<br /><table><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_3.png" /></td><td></td></tr></table>': layer_1997_ottawa_8,'2003_CCW_protocol_V<br /><table><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_3.png" /></td><td></td></tr></table>': layer_2003_CCW_protocol_V_7,'2006_CRPD<br /><table><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_3.png" /></td><td></td></tr></table>': layer_2006_CRPD_6,'2008_CCM<br /><table><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_3.png" /></td><td></td></tr></table>': layer_2008_CCM_5,'2013_ATT<br /><table><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_3.png" /></td><td></td></tr></table>': layer_2013_ATT_4,'convention_geneve_1951<br /><table><tr><td style="text-align: center;"><img src="legend/convention_geneve_1951_3_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/convention_geneve_1951_3_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/convention_geneve_1951_3_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/convention_geneve_1951_3_3.png" /></td><td></td></tr></table>': layer_convention_geneve_1951_3,'protocol_geneve_1967<br /><table><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_3.png" /></td><td></td></tr></table>': layer_protocol_geneve_1967_2,'CRC<br /><table><tr><td style="text-align: center;"><img src="legend/CRC_1_0.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_3.png" /></td><td></td></tr></table>': layer_CRC_1,'CEDAW<br /><table><tr><td style="text-align: center;"><img src="legend/CEDAW_0_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_3.png" /></td><td></td></tr></table>': layer_CEDAW_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Policy_base_10.png" /> Policy_base': layer_Policy_base_10,'1980_CCW<br /><table><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1980_CCW_9_Nodata3.png" /></td><td>No data</td></tr></table>': layer_1980_CCW_9,'1997_ottawa<br /><table><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/1997_ottawa_8_3.png" /></td><td></td></tr></table>': layer_1997_ottawa_8,'2003_CCW_protocol_V<br /><table><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2003_CCW_protocol_V_7_3.png" /></td><td></td></tr></table>': layer_2003_CCW_protocol_V_7,'2006_CRPD<br /><table><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2006_CRPD_6_3.png" /></td><td></td></tr></table>': layer_2006_CRPD_6,'2008_CCM<br /><table><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2008_CCM_5_3.png" /></td><td></td></tr></table>': layer_2008_CCM_5,'2013_ATT<br /><table><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/2013_ATT_4_3.png" /></td><td></td></tr></table>': layer_2013_ATT_4,'Convention de Genève<br /><table><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/ConventiondeGenve_3_3.png" /></td><td></td></tr></table>': layer_ConventiondeGenve_3,'protocol_geneve_1967<br /><table><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_1.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/protocol_geneve_1967_2_3.png" /></td><td></td></tr></table>': layer_protocol_geneve_1967_2,'CRC<br /><table><tr><td style="text-align: center;"><img src="legend/CRC_1_0.png" /></td><td></td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CRC_1_3.png" /></td><td></td></tr></table>': layer_CRC_1,'CEDAW<br /><table><tr><td style="text-align: center;"><img src="legend/CEDAW_0_NS0.png" /></td><td>NS</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_S1.png" /></td><td>S</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_SP2.png" /></td><td>SP</td></tr><tr><td style="text-align: center;"><img src="legend/CEDAW_0_3.png" /></td><td></td></tr></table>': layer_CEDAW_0,},{collapsed:false}).addTo(map);
         setBounds();
         </script>
     </body>
